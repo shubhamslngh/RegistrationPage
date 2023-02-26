@@ -116,7 +116,7 @@
                 document.getElementById("cnflabel").innerHTML = "Passwords do not match";
                 return false;
             }
-            if (pass !== cnfpass) {
+            if (pass == cnfpass) {
                 document.getElementById("cnflabel").style.visibility = "hidden";
             }
             alert("Registration successful!");
