@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <title>Registration Form</title>
+</head>
+
+<body>
+    <h2>Registration Form</h2>
+    <form>
+        <label for="fname">Name:</label>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email"><br>
+        <label for="phn">Phone No:</label>
+        <input type="text" id="phn" name="phn">
+        <br>
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="pass">
+        <br>
+        <label for="cnfpass">Confirm Password:</label>
+        <input type="password" id="cnfpass" name="cnfpass">
+        <br><br>
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+    <script>
+        function validateForm() {
+            var fname = document.getElementById("fname").value;
+            var email = document.getElementById("email").value;
+            var phn = document.getElementById("phn").value;
+            var pass = document.getElementById("pass").value;
+            var cnfpass = document.getElementById("cnfpass").value;
+
+            var nameRegex = /^[A-Za-z ]+$/;
+            var emailRegex = /^\S+@\S+\.\S+$/;
+            var phnRegex = /^[1-9]\d{9}$/;
+            var passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{8,}$/;
+
+            if (fname == "") {
+                alert("Name field is required");
+                return false;
+            }
+            else if (!nameRegex.test(fname)) {
+                alert("Invalid name format");
+                return false;
+            }
+
+            if (email == "") {
+                alert("Email field is required");
+                return false;
+            }
+            else if (!emailRegex.test(email)) {
+                alert("Invalid email format");
+                return false;
+            }
+
+            if (phn == "") {
+                alert("Phone number field is required");
+                return false;
+            }
+            else if (!phnRegex.test(phn)) {
+                alert("Invalid phone number format");
+                return false;
+            }
+
+            if (pass == "") {
+                alert("Password field is required");
+                return false;
+            }
+            else if (!passRegex.test(pass)) {
+                alert("Invalid password format");
+                return false;
+            }
+
+            if (cnfpass == "") {
+                alert("Confirm Password field is required");
+                return false;
+            }
+            else if (pass !== cnfpass) {
+                alert("Passwords do not match");
+                return false;
+            }
+
+            alert("Registration successful!");
+            return true;
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Registration Form</title>
+</head>
+
+<body>
+    <h2>Registration Form</h2>
+    <form>
+        <label for="fname">Name:</label>
+        <input type="text" id="fname" name="fname">
+        <label id="fnamelabel" style="visibility: hidden; color: rgb(205, 8, 8);">invalid </label>
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email">
+        <label id="emaillabel" style="visibility: hidden; color: rgb(205, 8, 8);">invalid </label>
+        <label for="phn">Phone No:</label>
+        <input type="text" id="phn" name="phn">
+        <label id="phnlabel" style="visibility: hidden; color: rgb(205, 8, 8)  ;">invalid phone number</label>
+        <label for="pass">Password:</label>
+        <input type="password" id="pass" name="pass">
+        <label id="passlabel" style="visibility: hidden; color: rgb(205, 8, 8) ;">invalid pass</label>
+        <label for="cnfpass">Confirm Password:</label>
+        <input type="password" id="cnfpass" name="cnfpass">
+        <label id="cnflabel" style="visibility: hidden; color: rgb(205, 8, 8)  ;">invalid cnfpass</label>
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+    <script>
+        function validateForm() {
+            var fname = document.getElementById("fname").value;
+            var email = document.getElementById("email").value;
+            var phn = document.getElementById("phn").value;
+            var pass = document.getElementById("pass").value;
+            var cnfpass = document.getElementById("cnfpass").value;
+
+            var nameRegex = /^[A-Za-z ]+$/;
+            var emailRegex = /^\S+@\S+\.\S+$/;
+            var phnRegex = /^[1-9]\d{9}$/;
+            var passRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{8,}$/;
+
+            if (fname == "") {
+                // alert("Name field is required");
+                document.getElementById("fnamelabel").style.visibility = "visible";
+                document.getElementById("fnamelabel").innerHTML = "*Required";
+                return false;
+            }
+            else if (!nameRegex.test(fname)) {
+                // alert("Invalid name format");
+                document.getElementById("fnamelabel").style.visibility = "visible";
+                document.getElementById("fnamelabel").innerHTML = "Invalid name format";
+                return false;
+            }
+            if(nameRegex.test(fname)==true){
+                document.getElementById("fnamelabel").style.visibility = "hidden";
+
+            }
+
+            if (email == "") {
+                // alert("Email field is required");
+                document.getElementById("emaillabel").style.visibility = "visible";
+                document.getElementById("emaillabel").innerHTML = "*Required";
+                return false;
+            }
+            else if (!emailRegex.test(email)) {
+                // alert("Invalid email format");
+                document.getElementById("emaillabel").style.visibility = "visible";
+                document.getElementById("emaillabel").innerHTML = "Invalid email format";
+                return false;
+            }
+            if (emailRegex.test(email)==true) {
+                document.getElementById("emaillabel").style.visibility = "hidden";
+
+            }
+
+            if (phn == "") {
+                // alert("Phone number field is required");
+                document.getElementById("phnlabel").style.visibility = "visible";
+                document.getElementById("phnlabel").innerHTML="*Required";
+                return false;
+            }
+            else if (!phnRegex.test(phn)) {
+                document.getElementById("phnlabel").style.visibility="visible";
+                document.getElementById("phnlabel").innerHTML = "invalid phone number";
+                // alert("Invalid phone number format");
+                return false;
+            }
+            if (phnRegex.test(phn) == true){
+                document.getElementById("phnlabel").style.visibility = "hidden";
+            }
+            if (pass == "") {
+                // alert("Password field is required");
+                document.getElementById("passlabel").style.visibility = "visible";
+                document.getElementById("passlabel").innerHTML = "*Required";
+                return false;
+            }
+            else if (!passRegex.test(pass)) {
+                // alert("Invalid password format");
+                document.getElementById("passlabel").style.visibility = "visible";
+                document.getElementById("passlabel").innerHTML = "Invalid password format";
+                return false;
+            }
+            if (passRegex.test(pass)==true) {
+                document.getElementById("passlabel").style.visibility = "hidden";
+            }
+
+            if (cnfpass == "") {
+                // alert("Confirm Password field is required");
+                document.getElementById("cnflabel").style.visibility = "visible";
+                document.getElementById("cnflabel").innerHTML = "Confirm Password field is required";
+                return false;
+            }
+            else if (pass !== cnfpass) {
+                // alert("Passwords do not match");
+                document.getElementById("cnflabel").style.visibility = "visible";
+                document.getElementById("cnflabel").innerHTML = "Passwords do not match";
+                return false;
+            }
+            if (pass !== cnfpass) {
+                document.getElementById("cnflabel").style.visibility = "hidden";
+            }
+            alert("Registration successful!");
+            return true;
+        }
+    </script>
+</body>
+
+</html>
